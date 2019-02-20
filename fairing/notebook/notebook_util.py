@@ -1,5 +1,5 @@
 import json
-import os.path
+import os
 import ipykernel
 import requests
 import re
@@ -13,14 +13,15 @@ def get_notebook_name():
     """
     Return the full path of the jupyter notebook.
     """
-    home = os.path.expanduser('~')
-    runtime_dir = os.path.join(home, '.local/share/jupyter/runtime')
-    runtime_files = [f for f in os.listdir(runtime_dir) if os.path.splitext(f)[1] == '.json']
-    runtime_files.sort(key=lambda f: os.path.getmtime(os.path.join(runtime_dir, f)), reverse=True)
-    current_runtime_file = os.path.join(runtime_dir, runtime_files[0])
+    # home = os.path.expanduser('~')
+    # runtime_dir = os.path.join(home, '.local/share/jupyter/runtime')
+    # runtime_files = [f for f in os.listdir(runtime_dir) if os.path.splitext(f)[1] == '.json']
+    # runtime_files.sort(key=lambda f: os.path.getmtime(os.path.join(runtime_dir, f)), reverse=True)
+    # current_runtime_file = os.path.join(runtime_dir, runtime_files[0])
 
-    with open(current_runtime_file, 'r') as fp_:
-        token = json.load(fp_).get('token')
+    # with open(current_runtime_file, 'r') as fp_:
+    #     token = json.load(fp_).get('token')
+    token = os.getenv('KERNEL_JHUB_API_TOKEN')
 
     url = urljoin('http://{}/user/{}/'.format(os.getenv('PROXY_PUBLIC_SERVICE_HOST'), os.getenv('KERNEL_USERNAME')), 'api/sessions')
     response = requests.get(url, params={'token': token}, verify=False)
