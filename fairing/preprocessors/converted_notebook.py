@@ -52,7 +52,8 @@ class ConvertNotebookPreprocessor(BasePreProcessor):
         exporter.register_preprocessor(self.notebook_preprocessor, enabled=True)
         contents, _ = exporter.from_filename(self.notebook_file)
         converted_notebook = Path(self.notebook_file).with_suffix('.py')
-        with open(str(converted_notebook), 'w') as f:
+        converted_notebook = str(converted_notebook)
+        with open(converted_notebook, 'w') as f:
             f.write(contents)
         self.executable = converted_notebook
         return [converted_notebook]
