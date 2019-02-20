@@ -32,8 +32,8 @@ def get_notebook_name():
         if nn['kernel']['id'] == kernel_id:
             full_path = nn['notebook']['path']
             # return os.path.basename(full_path)
-            # return full_path
-            return os.path.join(home, full_path)
+            return full_path
+            # return os.path.join(home, full_path)
     return None
 
 
