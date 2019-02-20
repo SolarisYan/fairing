@@ -44,7 +44,7 @@ class ConvertNotebookPreprocessor(BasePreProcessor):
         if notebook_file is None and notebook_util.is_in_notebook():
             notebook_file = notebook_util.get_notebook_name()
 
-        self.notebook_file = notebook_file
+        self.notebook_file = os.path.join(path_prefix, notebook_file)
         self.notebook_preprocessor = notebook_preprocessor
 
     def preprocess(self):
