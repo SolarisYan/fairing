@@ -13,7 +13,7 @@ def get_notebook_name():
     """
     Return the full path of the jupyter notebook.
     """
-    # home = os.path.expanduser('~')
+    home = os.path.expanduser('~')
     # runtime_dir = os.path.join(home, '.local/share/jupyter/runtime')
     # runtime_files = [f for f in os.listdir(runtime_dir) if os.path.splitext(f)[1] == '.json']
     # runtime_files.sort(key=lambda f: os.path.getmtime(os.path.join(runtime_dir, f)), reverse=True)
@@ -32,7 +32,8 @@ def get_notebook_name():
         if nn['kernel']['id'] == kernel_id:
             full_path = nn['notebook']['path']
             # return os.path.basename(full_path)
-            return full_path
+            # return full_path
+            return os.path.join(home, full_path)
     return None
 
 
