@@ -43,8 +43,10 @@ class BasePreProcessor(object):
     def context_map(self):
         c_map = self.fairing_runtime_files()
         for f in self.input_files:
+            print(f)
             f = str(f)
-            c_map[f] = os.path.join(self.path_prefix, f)
+            # c_map[f] = os.path.join(self.path_prefix, f)
+            c_map[str(f)] = os.path.join(self.path_prefix, str(f))
 
         for k, v in self.output_map.items():
             c_map[k] = v
